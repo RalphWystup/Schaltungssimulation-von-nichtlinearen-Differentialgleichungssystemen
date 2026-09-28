@@ -1,5 +1,7 @@
 # Schaltungssimulation nichtlinearer Netzwerke: die B4-Brücke
 
+<img src="Foto_Ralph_Wystup.jpg" align="right" width="140" alt="Prof. Dr.-Ing. Ralph Wystup">
+
 Prof. Dr.-Ing. Ralph Wystup M.Sc. — erstellt mit KI und Agent (Claude Code, Anthropic)
 
 Nichtlineare Netzwerke simulieren: erweiterte Knotenanalyse, Newton-Raphson und Euler am Beispiel der B4-Brücke mit belastetem RC-Glied.
