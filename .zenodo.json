@@ -1,0 +1,34 @@
+{
+  "title": "Schaltungssimulation nichtlinearer Differentialgleichungssysteme",
+  "description": "<p>Erweiterte Knotenanalyse, Newton-Raphson und Euler an der B4-Brücke mit belastetem RC-Glied. Dioden nach Shockley ohne Näherung, und seit Teil XII der Transistor als Bauteil der Netzliste.</p><p>Die Arbeit besteht aus einem Manuskript, das die Herleitung geschlossen zeigt, einer Seite, die im Browser rechnet und ohne Netz läuft, einem Prüfplan mit einer Schranke je Kriterium, und den zugehörigen Programmen und Messdaten. Seite: <a href=\"https://ralphwystup.github.io/Schaltungssimulation-von-nichtlinearen-Differentialgleichungssystemen/\">https://ralphwystup.github.io/Schaltungssimulation-von-nichtlinearen-Differentialgleichungssystemen/</a> · Übersicht aller Arbeiten: <a href=\"https://ralphwystup.github.io/\">https://ralphwystup.github.io/</a></p>",
+  "creators": [
+    {
+      "name": "Wystup, Ralph"
+    }
+  ],
+  "upload_type": "software",
+  "license": "MIT",
+  "access_right": "open",
+  "language": "deu",
+  "keywords": [
+    "Schaltungssimulation",
+    "Knotenpotentialverfahren",
+    "Newton-Raphson",
+    "Euler",
+    "SPICE"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://ralphwystup.github.io/Schaltungssimulation-von-nichtlinearen-Differentialgleichungssystemen/",
+      "relation": "isIdenticalTo",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://ralphwystup.github.io/",
+      "relation": "isPartOf",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Erstellt mit KI und Agent (Claude Code, Anthropic). Alle Zahlen gerechnet oder gemessen, jede Rechnung von Hand nachvollziehbar."
+}
