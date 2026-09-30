@@ -1,0 +1,8 @@
+* Gegenprobe zu seiner LTspice-Datei Eigen_RW_1e.asc:
+*   V1 = 25 V, R1 = 100 Ohm (Kollektor), R2 = 36796 Ohm (Basis),
+*   .MODEL simple_npn NPN(IS=1e-13 BF=200 NF=1 VAF=100 VAR=200 IKF=0.5 RB=10)
+* Die Namen sind seine: R1 ist der Kollektor-, R2 der Basiswiderstand.
+V1  vcc 0     dc 25
+R2  vcc b     36796
+R1  vcc c     100
+T1  c   b  0  Demo_erweitert

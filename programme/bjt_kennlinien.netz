@@ -1,0 +1,15 @@
+* Messplatz fuer die Kennlinienfelder: der Transistor haengt an zwei
+* idealen Quellen, genau wie am Kennlinienschreiber. VB und VC werden
+* vom Abnahmeprogramm im Betrieb verstellt (b.U), gesweept wird also
+* dieselbe Netzliste.
+*   Ausgangskennlinienfeld : VC durchfahren, VB so nachfuehren, dass
+*                            I_B auf seinem Stufenwert steht
+*   Eingangskennlinie      : VB durchfahren, VC fest
+*   Stromsteuerkennlinie   : VB so nachfuehren, dass I_B den Sollwert
+*                            hat, VC fest
+* Modell BC337 — der Transistor, an dem die Messdateien Ic_Vce.txt,
+* Ic_Vbe.txt und Ic_Ib.txt aufgenommen wurden (bjt_extract.py: "uebrigens
+* ein BC337").
+VC  c 0      dc 5
+VB  b 0      dc 0.65
+T1  c b  0   BC337

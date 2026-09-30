@@ -1,0 +1,149 @@
+==========================================================================
+  ABNAHME 0 — die vier Tangenten gegen den Differenzenquotienten
+--------------------------------------------------------------------------
+  zentraler Differenzenquotient, Schrittweite h = 1e-6 V;
+  verglichen wird RELATIV, also |analytisch/numerisch - 1|.
+    BC547          : groesste relative Abweichung 3.84e-08
+    BC337          : groesste relative Abweichung 3.48e-07
+    Demo_einfach   : groesste relative Abweichung 1.81e-08
+    Demo_erweitert : groesste relative Abweichung 4.26e-08
+  bestanden     alle vier Ableitungen, alle vier Karten: 3.482e-07  (Schranke 1e-05)
+
+==========================================================================
+  ABNAHME 1 — Arbeitspunkt der Emitterschaltung gegen kap08_rechnung.py
+--------------------------------------------------------------------------
+  Netzliste bjt_fixedbias.netz, R_B = 37275.390625 Ohm, Modell BC547
+  Newton: 155 Durchgaenge vom kalten Start u = 0 (die Daempfung d_max = 0,5 V braucht sie, um 25 V hochzulaufen),
+          Abbrueche an der Grenze max_it = 200: 0
+
+  Groesse                 Simulator    kap08_rechnung.py   Stellen
+  u_be               0.752165490095       0.752165524359       7.3
+  u_be_eff           0.742407923749       0.742407946744       7.5
+  u_ce                12.4911093065        12.4911005604       6.2
+  i_b             0.000650504423054    0.000650505174301       5.9
+  i_c                0.125088894444       0.125088994396       6.1
+  beta_eff            181.122297886         181.12225375       6.6
+
+  Uebereinstimmung mit seinem Programm: mindestens 5.9 gueltige Stellen in jeder Groesse.
+  bestanden     gueltige Stellen gegen kap08_rechnung.py (negativ gezaehlt): -5.937e+00 Stellen (Schranke -5e+00)
+
+  Dieselben Gleichungen von Hand, aber MIT GMIN gerechnet:
+    V_BE = 0.752165490095 V   Simulator 0.752165490095 V
+    V_CE = 12.491109306507 V   Simulator 12.491109306507 V
+    I_C  = 1.250888944438e-01 A   Simulator 1.250888944438e-01 A
+  bestanden     gegen seine Gleichungen mit GMIN: 1.155e-13 V (Schranke 1e-09)
+  Damit ist der Rest gegen sein Programm benannt und nicht nur
+  klein: es ist GMIN, nichts sonst.
+
+==========================================================================
+  ABNAHME 2 — Ausgangskennlinienfeld gegen die Messung Ic_Vce.txt
+--------------------------------------------------------------------------
+  BC337, Modellkarte aus bjt_fit.py (globaler Fit).
+  Ausgewertet wird der aktive Ast V_CE >= 1 V — genau die Grenze,
+  die sein bjt_fit.py auch zieht (der Saettigungsbereich gehoert
+  nicht in den Gueltigkeitsbereich seines Modells).
+    Ausgangskennlinienfeld: groesste 2.51 %, mittlere 1.53 % (146 Punkte)
+  bestanden     Ausgangskennlinienfeld groesste Abweichung: 2.510e+00 % (Schranke 6e+00)
+  bestanden     Ausgangskennlinienfeld mittlere Abweichung: 1.533e+00 % (Schranke 2e+00)
+    Mittelwert (mit Vorzeichen), Kapitel-8-Form : -1.42 %
+    dieselben Punkte in der Kapitel-6.8-Form    : +0.08 %  (mittlere |Abw.| 0.50 %)
+    Der systematische Anteil ist also genau der Formunterschied
+    exp(I_B R_BI/(n V_T)) zwischen Kapitel 6.8 und Kapitel 8.4,
+    und die Karte wurde mit der Form aus 6.8 gefittet. R_BI ist
+    aus diesen Daten ohnehin nicht bestimmbar (sein eigener
+    Identifizierbarkeitstest: Kostenfaktor 1,01).
+  bestanden     Kapitel-6.8-Form trifft den Fit (Mittelwert): 7.854e-02 % (Schranke 5e-01)
+    Newton im Sweep: 7154 Arbeitspunkte, im Mittel 2.48 Durchgaenge, groesste 18, Abbrueche 0
+
+==========================================================================
+  ABNAHME 3 — Eingangs- und Stromsteuerkennlinie
+--------------------------------------------------------------------------
+    Eingangskennlinie (I_C ueber V_BE): groesste 12.77 %, mittlere 5.30 % (31 Punkte)
+  bestanden     Eingangskennlinie (I_C ueber V_BE) groesste Abweichung: 1.277e+01 % (Schranke 2e+01)
+  bestanden     Eingangskennlinie (I_C ueber V_BE) mittlere Abweichung: 5.296e+00 % (Schranke 1e+01)
+    dieselbe Abweichung als Spannung: groesste 3.55 mV, mittlere 1.38 mV
+  bestanden     Eingangskennlinie in V_BE gerechnet: 3.547e+00 mV (Schranke 6e+00)
+    Stromsteuerkennlinie (I_C ueber I_B): groesste 3.31 %, mittlere 1.84 % (69 Punkte)
+  bestanden     Stromsteuerkennlinie (I_C ueber I_B) groesste Abweichung: 3.308e+00 % (Schranke 6e+00)
+  bestanden     Stromsteuerkennlinie (I_C ueber I_B) mittlere Abweichung: 1.839e+00 % (Schranke 2e+00)
+
+==========================================================================
+  ABNAHME 4 — Zeitverlauf: Emitterschaltung mit Koppelkondensator
+--------------------------------------------------------------------------
+  Quelle abgeschaltet, 60001 Schritte a 100 ns (6.00 ms):
+    u_Ck  Start -0.752165524352 V  ->  Ende -0.752165490095 V
+    V_CE  Start 12.491099204 V  ->  Ende 12.491109306 V
+    Arbeitspunkt der Abnahme 1 (Gleichstrom): 12.491109307 V
+    groesste Wanderung von V_CE: 1.010e-05 V
+    Erklaerung: der Anfangswert von u_Ck ist SEIN V_BE; der
+    Simulator steht mit GMIN 34.3 nV
+    daneben, und die Stufe verstaerkt das auf 295-fach.
+  bestanden     Endpunkt gleich dem Gleichstrom-Arbeitspunkt: 7.861e-11 V (Schranke 1e-09)
+  bestanden     Wanderung bleibt im Rahmen des Anfangswertfehlers: 1.010e-05 V (Schranke 1e-04)
+
+  Mit Signal (20 mV, 2 kHz), 60000 Schritte, 12 Perioden:
+    Modellformel gegen Stempel   : 0.000e+00 A / 6.505e-19 A
+    Lastgerade gegen I_C         : 2.137e-15 A
+  bestanden     Modellformel gegen Stempel (I_C): 0.000e+00 A (Schranke 1e-15)
+  bestanden     Modellformel gegen Stempel (I_B): 6.505e-19 A (Schranke 1e-15)
+  bestanden     Lastgerade in jedem Zeitschritt: 2.137e-15 A (Schranke 1e-11)
+
+  Grosssignalverzerrung (letzte Periode):
+    innerer Hub u_hut(V_BE,eff)     = 13.8536 mV
+    I_C,max / I_C,min  gerechnet    = 2.604219516
+    exp(2 u_hut/(n V_T))            = 2.888751239
+    mal Early-Korrektur 0.901503557 = 2.604219516
+    V_CE-Hub um die Mittellinie: oben  5254.04 mV, unten  5881.81 mV
+    Unsymmetrie -11.27 %  —  eine LINEARE Stufe haette hier
+    exakt 0,00 %. Diese Unsymmetrie IST die Grosssignalverzerrung,
+    und sie ist die der e-Funktion.
+  bestanden     Verzerrung sichtbar (negativ gezaehlt): -1.127e+01 % (Schranke -5e+00)
+  bestanden     nur exp(2 u_hut/(n V_T)) (ohne Early): 9.850e-02  (Schranke 1e-01)
+  bestanden     exp mal Early-Korrektur: 2.442e-15  (Schranke 1e-05)
+
+  Der Arbeitspunkt unter Grosssignal (Selbstvorspannung):
+    Mittelwert von V_CE, letzte Periode   : 12.804356 V
+                         vorletzte Periode: 12.804361 V
+    Arbeitspunkt ohne Signal              : 12.491109 V
+    Verschiebung +313.2 mV
+    mittleres V_BE 749.9866 mV gegen 752.1655 mV ohne Signal  (-2.179 mV)
+    mittleres I_C  121.9564 mA gegen 125.0889 mA  -> ueber R_C genau die +313.2 mV oben
+    Das ist KEIN Wegdriften, sondern die Selbstvorspannung des
+    Koppelkondensators: die e-Funktion hebt den MITTLEREN
+    Basisstrom, und weil der Kondensator keinen Gleichstrom
+    traegt, muss die Gleichspannung an der Basis so weit sinken,
+    bis R_B den geforderten Mittelwert wieder liefert.
+
+    Knotenbilanz b im Periodenmittel:
+      I_B                          = 6.505626688e-04 A
+      (V_CC - V_BE)/R_B - GMIN V_BE - I_Ck = 6.505630910e-04 A
+      (der Kondensator fuehrt im Mittel noch -2.11e-10 A,
+       das ist genau C du_Ck/T aus seinem Zustandswert)
+  bestanden     Koppelkondensator traegt keinen Gleichstrom: 4.222e-10 A (Schranke 1e-09)
+  bestanden     Arbeitspunkt eingeschwungen (Periode zu Periode): 4.895e-06 V (Schranke 2e-03)
+
+==========================================================================
+  ABNAHME 5 — Gegenprobe mit seinen LTspice-Dateien
+--------------------------------------------------------------------------
+  Eigen_RW_1c/_1d   R2 =    44453 Ohm, .model Demo_einfach
+      Simulator: V_CE = 12.6883 V   V_BE = 716.61 mV   I_C = 123.117 mA
+      sein Ziel: V_CE = V_CC/2 = 12,5000 V   Abweichung +0.1883 V (+1.51 %)
+  Eigen_RW_1e/_1f   R2 =    36796 Ohm, .model Demo_erweitert
+      Simulator: V_CE = 12.5032 V   V_BE = 723.63 mV   I_C = 124.968 mA
+      sein Ziel: V_CE = V_CC/2 = 12,5000 V   Abweichung +0.0032 V (+0.03 %)
+  bestanden     Eigen_RW_1e (erweiterte .model-Karte) gegen V_CC/2: 3.216e-03 V (Schranke 5e-02)
+  bestanden     kein Newton-Abbruch an max_it in irgendeinem Lauf (negativ): -1.000e+00  (Schranke 0e+00)
+
+  Die erweiterte Karte trifft seinen LTspice-Basiswiderstand; die
+  einfache nicht — der offene Punkt ist im Manuskript, Abschnitt
+  50.5, benannt und NICHT weggerechnet.
+
+  Vier Bilder in ../Bilder/ geschrieben:
+    BJT_Ausgangskennlinienfeld.png
+    BJT_Eingang_Steuerkennlinie.png
+    BJT_Zeitverlauf.png
+    BJT_Ableitungsprobe.png
+
+==========================================================================
+  ERGEBNIS: alle Abnahmen bestanden
+==========================================================================

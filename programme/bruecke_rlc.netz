@@ -1,0 +1,20 @@
+* B4-Bruecke mit RLC-Tiefpass vor der Last (Beispiel 2 der Webseite)
+* Drossel L1 (mit Wicklungswiderstand R1) und C1 bilden den Tiefpass:
+* Eckfrequenz 1/(2 pi sqrt(L C)) = 23 Hz, weit unter dem 100-Hz-Brumm.
+* Knoten: K0 = Masse, K1/K2 = Brueckeneingaenge, K3 = Brueckenausgang,
+*         K4 = Drosselknoten, K5 = Kondensatorknoten, K6 = Quelle/Ri.
+Q1  K6 K2  sinus 30 50
+Ri  K6 K1  1
+D1  K1 K3  1N4148
+D2  K2 K3  1N4148
+D3  K0 K1  1N4148
+D4  K0 K2  1N4148
+R1  K3 K4  1
+L1  K4 K5  100m
+C1  K5 K0  470u
+RL  K5 K0  100
+* Entladewiderstand: gibt dem Drosselstrom IMMER einen Weg. Ohne ihn hat
+* ein (im Anlauf kurz negativer) Drosselstrom durch die sperrende Bruecke
+* keinen Pfad, das Potential K3 laeuft numerisch davon (Zacken); im
+* realen Aufbau uebernehmen das die Sperrschichtkapazitaeten der Dioden.
+Rb  K3 K0  10k

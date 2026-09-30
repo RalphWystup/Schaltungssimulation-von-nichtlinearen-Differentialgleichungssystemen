@@ -1,0 +1,15 @@
+* B4-Bruecke mit belastetem RC-Glied — die Schaltung des Manuskripts
+* Knoten: K0 = Masse (Minus-Schiene), K1 = a, K2 = b (Brueckeneingaenge),
+*         K3 = P (Brueckenausgang), K4 = Kondensatorknoten,
+*         K5 = Verbindung Quelle/Innenwiderstand.
+* Q1 (sinus 30 V, 50 Hz) zwischen K5 und K2, Ri von K5 nach K1:
+* zusammen die Quelle mit Innenwiderstand ZWISCHEN K1 und K2.
+Q1  K5 K2  sinus 30 50
+Ri  K5 K1  1
+D1  K1 K3  1N4148
+D2  K2 K3  1N4148
+D3  K0 K1  1N4148
+D4  K0 K2  1N4148
+R1  K3 K4  10
+C1  K4 K0  1000u
+RL  K4 K0  100

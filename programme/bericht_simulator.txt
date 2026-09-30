@@ -1,0 +1,54 @@
+======================================================================
+  ABNAHME 1 — Spannungsteiler an idealer Quelle
+----------------------------------------------------------------------
+  u(m) = 6.666662222225 V   (von Hand 6.666662222225 V, ohne GMIN 6.666666666667 V)
+  bestanden     Spannungsteiler: groesste Abweichung 0.000e+00 V (Schranke 1e-12)
+
+======================================================================
+  ABNAHME 2 — RC-Aufladung gegen die Euler-Folge von Hand
+----------------------------------------------------------------------
+  u_C nach 5 ms: Simulator 9.932779284 V, Euler von Hand 9.932779284 V, exakt 9.932620530 V
+  bestanden     RC gegen Euler-Folge: groesste Abweichung 1.776e-15 V (Schranke 1e-12)
+
+======================================================================
+  ABNAHME 3 — RL-Aufladung gegen die Euler-Folge von Hand
+----------------------------------------------------------------------
+  i_L nach 20 ms: Simulator 0.864678248 A, Euler von Hand 0.864678248 A, exakt 0.864664717 A
+  bestanden     RL gegen Euler-Folge: groesste Abweichung 0.000e+00 A (Schranke 1e-12)
+
+======================================================================
+  ABNAHME 4 — B4-Bruecke als Netzliste gegen bruecke_kern.py
+----------------------------------------------------------------------
+  nach 20000 Schritten (0,2 s):
+    u_C  Simulator 20.735660754 V   Kern 20.735661167 V
+    u_P  Simulator 20.737734270 V   Kern 20.737734683 V
+    Newton im Mittel: Simulator 3.71, Kern 3.94
+  bestanden     u_C gegen den Kern: groesste Abweichung 4.572e-07 V (Schranke 1e-06)
+  bestanden     u_P gegen den Kern: groesste Abweichung 5.557e-07 V (Schranke 1e-06)
+
+======================================================================
+  ABNAHME 5 — RC und RL mit IMPLIZITEM Euler gegen die Folge von Hand
+----------------------------------------------------------------------
+  u_C nach 5 ms: Simulator 9.932442388 V, implizit von Hand 9.932442388 V, exakt 9.932620530 V
+  bestanden     RC implizit: groesste Abweichung 4.974e-14 V (Schranke 1e-09)
+  i_L nach 20 ms: Simulator 0.864651181 A, implizit von Hand 0.864651181 A, exakt 0.864664717 A
+  bestanden     RL implizit: groesste Abweichung 5.551e-17 A (Schranke 1e-09)
+
+======================================================================
+  ABNAHME 6 — Stabilitaet am LC-Schwingkreis (die Nagelprobe)
+----------------------------------------------------------------------
+  explizit : groesste |u_C| in 0,1 s =     1435.183 V (Anfangswert 10 V)
+  implizit : groesste |u_C| in 0,1 s =        9.990 V (Anfangswert 10 V)
+  bestanden      explizit klingt auf — die bekannte Schwaeche
+  bestanden      implizit bleibt beschraenkt
+
+======================================================================
+  ABNAHME 7 — die Bruecke mit implizitem Euler
+----------------------------------------------------------------------
+  u_C nach 0,2 s: implizit 20.733769697 V, explizit (Abnahme 4) 20.735660754 V
+  Newton im Mittel: 3.68
+  bestanden     implizit gegen explizit: groesste Abweichung 1.891e-03 V (Schranke 5e-03)
+
+======================================================================
+  ERGEBNIS: alle sieben Abnahmen bestanden
+======================================================================

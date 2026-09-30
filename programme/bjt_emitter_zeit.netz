@@ -1,0 +1,20 @@
+* Emitterschaltung mit Koppelkondensator und Signalquelle — der Lauf,
+* den eine reine Arbeitspunktrechnung nicht kann. Gleichstromseitig ist
+* das die Fixed-Bias-Stufe des Kapitels 8 (bjt_fixedbias.netz), davor
+* haengt ueber den Koppelkondensator Ck die Signalquelle Vs.
+*
+* Der Anfangswert von Ck ist NICHT null, sondern die Spannung, die im
+* Arbeitspunkt ueber ihm steht: u_Ck = u(s) - u(b) = 0 - V_BE.
+* V_BE = 0,752165524359 V ist der Wert aus kap08_rechnung.py. Damit
+* startet der Lauf IM Arbeitspunkt.
+*
+* Ck = 10 uF gegen die Eingangsimpedanz der Stufe (r_be + R_BI, rund
+* 55 Ohm im Arbeitspunkt) ergibt eine untere Grenzfrequenz von etwa
+* 290 Hz — bei 2 kHz koppelt der Kondensator also durch, ohne den
+* Arbeitspunkt zu tragen. Genau das soll er.
+V1  vcc 0     dc 25
+RB  vcc b     37275.390625
+RC  vcc c     100
+T1  c   b  0  BC547
+Vs  s   0     sinus 0.02 2000
+Ck  s   b     10u  -0.752165524359

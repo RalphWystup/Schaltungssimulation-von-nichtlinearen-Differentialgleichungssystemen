@@ -1,0 +1,13 @@
+* Fixed-Bias-Stufe des Buchkapitels 8 (Abbildung 8.3) als Netzliste.
+* V_CC = 25 V speist ueber R_C = 100 Ohm den Kollektor und ueber R_B
+* die Basis; V_BB = V_CC, also dieselbe Schiene. R_B ist das Ergebnis
+* seiner Bisektion in kap08_rechnung.py (V_CE = V_CC/2), auf alle
+* Stellen uebernommen: 37275,390625 Ohm.
+* Knoten: vcc = Versorgungsschiene, b = Basisklemme, c = Kollektor,
+*         0 = Emitter/Masse. Den INNEREN Basisknoten B' legt das
+*         Bauteil selbst an (R_BI = 15 Ohm) — er steht in keiner
+*         Netzliste, so wenig wie bei SPICE.
+V1  vcc 0     dc 25
+RB  vcc b     37275.390625
+RC  vcc c     100
+T1  c   b  0  BC547
